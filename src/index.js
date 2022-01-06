@@ -1,3 +1,5 @@
 import "./styles.css";
+import { HeaderComponent } from "./components/header.component";
 
-console.log('Started!')
+const header = new HeaderComponent('header');
+console.log(header);
