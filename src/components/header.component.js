@@ -8,7 +8,7 @@ export class HeaderComponent extends Component {
   }
 
   init() {
-    if(localStorage.getItem('visited')) {
+    if (localStorage.getItem('visited')) {
       this.hide();
     }
     const btn = this.$el.querySelector('.get-started');
