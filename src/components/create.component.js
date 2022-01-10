@@ -10,6 +10,10 @@ import {
   Validators
 } from '../core/validators';
 
+import {
+  apiService
+} from '../services/api.service';
+
 export class CreateComponent extends Component {
   constructor(id) {
     super(id);
@@ -25,7 +29,7 @@ export class CreateComponent extends Component {
   }
 }
 
-function submitHandler(e) {
+async function submitHandler(e) {
   e.preventDefault();
 
   if (this.form.isValid()) {
@@ -35,9 +39,10 @@ function submitHandler(e) {
       ...this.form.value(),
     };
 
-    this.form.clear();
+    await apiService.createPost(formData);
 
-    console.log('submit', formData);
+    this.form.clear();
+    alert('Запись создана в базе данных');
   }
 
 }

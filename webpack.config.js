@@ -30,10 +30,12 @@ module.exports = {
           options: {
             presets: [
               ['@babel/preset-env', {
-                targets: "defaults"
-              }]
+                targets: {
+                  esmodules: true,
+                }
+              }],
             ],
-            plugins: ['@babel/plugin-proposal-class-properties']
+            plugins: ['@babel/plugin-proposal-class-properties', "@babel/plugin-transform-runtime", ]
           }
         }
       },
