@@ -3,7 +3,7 @@ export class TransformService {
     return Object.keys(fbData).map(key => {
       const item = fbData[key];
       item.id = key;
-      console.log(item);
+      return item;
     });
   }
 }
