@@ -10,6 +10,7 @@ export class HeaderComponent extends Component {
   init() {
     if (localStorage.getItem('visited')) {
       this.hide();
+      document.querySelector('.container').classList.remove('hide');
     }
     const btn = this.$el.querySelector('.get-started');
     btn.addEventListener('click', buttonHandler.bind(this));
@@ -19,4 +20,5 @@ export class HeaderComponent extends Component {
 function buttonHandler() {
   localStorage.setItem('visited', true);
   this.$el.classList.add('hide');
+  document.querySelector('.container').classList.remove('hide');
 }

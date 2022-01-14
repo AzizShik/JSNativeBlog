@@ -4,7 +4,8 @@ const {
   CleanWebpackPlugin
 } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CssnanoPlugin = require('cssnano-webpack-plugin');
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
   entry: {
@@ -52,18 +53,29 @@ module.exports = {
       template: path.resolve(__dirname, './src/index.html'),
       filename: 'index.html',
     }),
-    new MiniCssExtractPlugin(),
+    new MiniCssExtractPlugin({
+      filename: "[name].[hash].bundle.css",
+    }),
     new CleanWebpackPlugin(),
   ],
 
   optimization: {
+    minimize: true,
     minimizer: [
-      new CssnanoPlugin(),
+      new CssMinimizerPlugin(),
+      new TerserPlugin({
+        terserOptions: {
+          format: {
+            comments: false,
+          },
+        },
+        extractComments: false,
+      }),
     ]
   },
 
   output: {
     path: path.resolve(__dirname, './dist'),
-    filename: '[name].bundle.js',
+    filename: "[name].[hash].bundle.js",
   }
 };
